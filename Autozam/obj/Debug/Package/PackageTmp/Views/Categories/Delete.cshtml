@@ -1,0 +1,32 @@
+@model Autozam.Models.Category
+
+@{
+    ViewBag.Title = "Usuwanie kategorii";
+}
+
+<h2>Usuwanie kategorii</h2>
+
+<h3>Czy jesteœ pewien, ¿e chcesz to usun¹æ?</h3>
+<fieldset>
+    <legend>Kategoria</legend>
+
+    <div class="display-label">Nazwa</div>
+    <div class="display-field">@Model.Name</div>
+
+    <div class="display-label">Opis</div>
+    <div class="display-field">@Model.Description</div>
+
+    <div class="display-label">Kolejnoœæ</div>
+    <div class="display-field">@Model.Order</div>
+
+    <div class="display-label">Liczba produktów: </div>
+    <div class="display-field">@(Model.Products == null ? "brak" : Model.Products.Count.ToString())</div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Usuñ" /> |
+    @Html.ActionLink("Powrót do listy kategorii", "Index")
+    </p>
+}
+
+

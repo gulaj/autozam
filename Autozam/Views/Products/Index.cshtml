@@ -1,0 +1,119 @@
+@model IEnumerable<Autozam.Models.Product>
+
+@{
+    ViewBag.Title = "Edycja produktów";
+}
+@*<script type="text/javascript">
+    $(document).ready(function () {
+
+        // Set up the jquery grid
+        $("#jqTable").jqGrid({
+            // Ajax related configurations
+            url: jqDataUrl,
+            datatype: "json",
+            mtype: "POST",
+
+            // Specify the column names
+            colNames: ["Id", "Name", "Score", "Enrollment"],
+
+            // Configure the columns
+            colModel: [
+            { name: "Id", index: "Id", width: 40, align: "left" },
+            { name: "Name", index: "Name", width: 100, align: "left" },
+            { name: "Score", index: "Score", width: 200, align: "left" },
+            { name: "Enrollment", index: "Enrollment", width: 200, align: "left" }],
+
+            // Grid total width and height
+            width: 550,
+            height: 200,
+
+            // Paging
+            toppager: true,
+            pager: $("#jqTablePager"),
+            rowNum: 5,
+            rowList: [5, 10, 20],
+            viewrecords: true, // Specify if "total number of records" is displayed
+
+            // Default sorting
+            sortname: "Id",
+            sortorder: "asc",
+
+            // Grid caption
+            caption: "A Basic jqGrid - Read Only"
+        }).navGrid("#jqTablePager",
+            { refresh: true, add: false, edit: false, del: false },
+                {}, // settings for edit
+                {}, // settings for add
+                {}, // settings for delete
+                { sopt: ["cn"] } // Search options. Some options can be set on column level
+         );
+    });
+</script>*@
+
+<h2>Edycja produktów</h2>
+
+<p>
+    @Html.ActionLink("Dodaj nowy", "Create")
+</p>
+<table style="width:980px;">
+    <tr>
+      
+        <th class="headerRow">
+            Nazwa
+        </th>
+        <th class="headerRow">
+            Kolejnoœæ
+        </th>
+
+        <th class="headerRow">
+            Cena od
+        </th>
+        <th class="headerRow">
+            Cena do
+        </th>
+        <th class="headerRow">
+            Kategoria
+        </th>  
+        <th class="headerRow">
+            Operacje
+        </th>
+    </tr>
+    
+@{ var i = 0;
+    foreach (var item in Model.OrderBy(m=>m.Category.Name).ThenBy(m=>m.Name)) {
+    i++;
+    var myClass = @"class=firstRow";
+		if(i%2 != 0){
+            myClass = @"class=secondRow";
+	}
+    <tr>
+     
+        <td @myClass>
+			@item.Name
+        </td>
+
+        <td  @myClass>
+			@item.Order
+        </td>
+
+
+        <td @myClass>
+			@String.Format("{0:F}", item.PriceFrom)
+        </td>
+        <td @myClass>
+			@String.Format("{0:F}", item.PriceTo)
+        </td>
+        <td @myClass style="width:200px;">
+			@(item.Category == null ? "None" : item.Category.Name)
+        </td>  
+        <td @myClass>
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Szczegó³y", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Usuñ", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+}
+</table>
+
+

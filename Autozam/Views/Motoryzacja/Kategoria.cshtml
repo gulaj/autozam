@@ -1,0 +1,21 @@
+﻿@model Autozam.Models.Category
+
+@{
+    ViewBag.Title = "Kategoria";
+}
+
+<h2> @Html.DisplayFor(model => model.Name)</h2>
+
+<fieldset>
+     <legend>@Html.DisplayFor(model => model.Name)</legend>
+
+
+    <div class="display-field">
+        @Html.DisplayTextFor(model => model.Description)
+    </div>
+
+
+
+</fieldset>
+
+ @{Html.RenderAction("_ListaProduktow", Model.Id );}

@@ -1,0 +1,35 @@
+﻿@model Autozam.Models.Product
+
+@{
+    ViewBag.Title = "Produkt";
+}
+
+<h2>@Html.DisplayFor(model => model.Name)</h2>
+
+<fieldset>
+    <legend>@Html.DisplayFor(model => model.Name)</legend>
+
+
+    <div class="display-field">
+        @Html.DisplayTextFor(model => model.Description)
+    </div>
+
+    <div class="display-label">
+         @{if(Model.PriceFrom.HasValue){
+         @Html.DisplayNameFor(model => model.PriceFrom)
+         @Html.DisplayFor(model => model.PriceFrom) 
+         }
+            if(Model.PriceTo.HasValue){
+                @Html.DisplayNameFor(model => model.PriceTo)
+                @Html.DisplayFor(model => model.PriceTo)
+            }
+            }   
+        @if(Model.PriceFrom.HasValue|| Model.PriceTo.HasValue){
+        @Html.Raw(" netto");
+        }
+        
+    </div>
+
+
+</fieldset>
+

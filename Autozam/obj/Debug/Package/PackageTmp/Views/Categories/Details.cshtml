@@ -1,0 +1,29 @@
+@model Autozam.Models.Category
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Szczegó³y</h2>
+
+<fieldset>
+    <legend>Kategoria</legend>
+
+    <div class="display-label">Nazwa</div>
+    <div class="display-field">@Model.Name</div>
+
+    <div class="display-label">Opis</div>
+    <div class="display-field">@Model.Description</div>
+
+    <div class="display-label">Kolejnoœæ</div>
+    <div class="display-field">@Model.Order</div>
+
+    <div class="display-label">Liczba produktów: </div>
+    <div class="display-field">@(Model.Products == null ? "brak" : Model.Products.Count.ToString())</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edycja", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Powrót do listy kategorii", "Index")
+</p>
+
+

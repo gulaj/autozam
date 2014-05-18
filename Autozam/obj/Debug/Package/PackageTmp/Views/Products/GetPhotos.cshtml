@@ -1,0 +1,11 @@
+﻿@model IEnumerable<string>
+
+<ul id="scroller">
+    @foreach (var fullPath in Model)
+    {
+         var fileName = Path.GetFileName(fullPath);
+
+         var img = string.Format("<img src=\"" + Href(@"~/images/products/27/") + "{0}\" alt=\"{0}\">", fileName);
+        <li>@Html.Raw(img)</li>
+    }
+ </ul>

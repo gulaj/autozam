@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - Autozam</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        
+        @Styles.Render("~/Content/css")
+         
+        <link rel="stylesheet" href="~/Content/themes/base/reset.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="~/Content/themes/base/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="~/Content/themes/base/grid.css" type="text/css" media="screen">   
+         @RenderSection("css", false)
+    <script src="~/Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
+         @RenderSection("scripts_header", false)
+  
+    </head>
+    <body>
+
+            <header>
+                <div class="main">
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>
+
+                    <div class="wrapper relative">
+                        <h1 class="logo" style="text-align: center"><a href="http://autozam.pl"></a>Wyposażanie pojazdów i jachtów<br />Telewizja Przemysłowa</h1>
+                        <div id="foundyear" >Rok założenia 1984</div>
+                        <div class="fright">
+                            <div class="indent">
+                                <span class="address">Powstańców Śląskich 80b,  Warszawa</span>
+                                <span class="phone">Tel: 601-20-30-40</span>
+								<span class="phone">22 665-99-66</span>
+                            </div>
+                        </div>
+                    </div>
+                    <nav>
+                        <ul class="menu">
+                            <li>@Html.ActionLink("O nas", "ONas", "Home")</li>
+                            <li>@Html.ActionLink("Motoryzacja", "Asortyment", "Motoryzacja")</li>
+                            <li>@Html.ActionLink("Telewizja przemysłowa", "TelewizjaPrzemyslowa", "Products")</li>
+                            <li>@Html.ActionLink("Referencje", "Referencje", "Home")</li>
+                            <li><a href="http://ubezpieczenia.autozam.pl" target="_blank">Ubezpieczenia</a></li>
+                            <li>@Html.ActionLink("Lokalizacja", "Contact", "Home")</li>
+                        </ul>
+                    </nav>
+                    @RenderSection("slider", required: false)
+                </div>
+            </header>
+
+        <div id="body">
+              <section id="content" class="content-wrapper main-content clear-fix">
+                <div class="main">
+                            @RenderBody()
+            
+                </div>
+            </section>
+           
+        </div>
+        <div class="clear-fix"></div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - Autozam</p>
+                </div>
+            </div>
+        </footer>
+
+
+        @RenderSection("scripts", required: false)
+  
+    </body>
+</html>

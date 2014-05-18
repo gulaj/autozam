@@ -1,0 +1,35 @@
+﻿@model Autozam.Models.LocalPasswordModel
+@{
+    ViewBag.Title = "Zarządzanie kontem";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+<p class="message-success">@ViewBag.StatusMessage</p>
+
+<p>Jesteś zalogowany jako <strong>@User.Identity.Name</strong>.</p>
+
+<p>Modyfikacja produktów, naciśnij @Html.ActionLink("Tutaj", "Index", "Products")</p>
+<p>Modyfikacja kategorii, naciśnij @Html.ActionLink("Tutaj", "Index", "Categories")</p>
+
+@if (ViewBag.HasLocalPassword)
+{
+    @Html.Partial("_ChangePasswordPartial")
+}
+else
+{ 
+    @Html.Partial("_SetPasswordPartial")
+}
+
+<section id="externalLogins">
+    @Html.Action("RemoveExternalLogins")
+
+@*    <h3>Powiąż konto z loginem zewnętrznym</h3>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })*@
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

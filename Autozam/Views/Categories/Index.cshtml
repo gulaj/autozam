@@ -1,0 +1,51 @@
+@model IEnumerable<Autozam.Models.Category>
+
+@{
+    ViewBag.Title = "Lista kategorii";
+}
+
+<h2>Lista kategorii</h2>
+
+<p>
+    @Html.ActionLink("Utwórz now¹", "Create")
+</p>
+<table style="width:980px;">
+    <tr>
+        <th class="headerRow">
+            Nazwa
+        </th>
+        <th class="headerRow">
+            Kolejnoœæ
+        </th>
+        <th class="headerRow">
+            Operacje
+        </th>
+
+    </tr>
+
+@{ var i = 0;
+   foreach (var item in Model.OrderBy(m=>m.Order)) {
+       i++;
+       var myClass = @"class=firstRow";
+       if (i % 2 != 0)
+       {
+           myClass = @"class=secondRow";
+       }
+       <tr>
+        <td @myClass>
+			@item.Name
+        </td>
+        <td @myClass>
+			@item.Order
+        </td>
+        <td @myClass>
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Podgl¹d", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Usuñ", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+}
+</table>
+
+

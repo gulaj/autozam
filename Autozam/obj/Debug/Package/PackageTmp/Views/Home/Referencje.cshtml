@@ -1,0 +1,58 @@
+﻿@model IEnumerable<string>
+
+@section css{
+
+<link rel="stylesheet" href="~/Content/themes/base/jquery.colorbox.css" type="text/css" media="screen"  />
+	<style type="text/css" media="screen">
+			
+			
+			
+			ul.gallery li { display: inline;}
+			
+			ul.gallery img{
+			 padding: 20px;
+			
+			}
+			
+			.wide {
+				border-bottom: 1px #000 solid;
+				width: 4000px;
+			}
+			
+			.fleft { float: left; margin: 0 20px 0 0; }
+			
+			.cboth { clear: both; }
+			
+			#main {
+				background: #fff;
+				margin: 0 auto;
+				padding: 30px;
+				width: 1000px;
+			}
+		</style>
+    }
+@section scripts_header{
+    		<script src="~/Scripts/jquery.colorbox.js" type="text/javascript" ></script>
+        
+    }
+
+
+<ul class="gallery clearfix">
+    
+    @foreach (var fullPath in Model)
+    {
+        
+         var fileName = Path.GetFileName(fullPath);
+         
+         var img = string.Format("<a class=\"group1\" href=\"" + Href(@"~/images/references/") + "{0}\"  title=\"\"><img src=\"" + Href(@"~/images/references/mini/") + "{0}\" alt=\"{0}\" /></a>", fileName);
+        <li>@Html.Raw(img)</li>
+    }
+</ul>
+
+ 
+<script>
+    $(document).ready(function () {
+        //Examples of how to assign the ColorBox event to elements
+        $(".group1").colorbox({ rel: 'group1',  transition:'none', retinaImage:true, retinaUrl:true, scalePhotos:true });
+    });
+    </script>

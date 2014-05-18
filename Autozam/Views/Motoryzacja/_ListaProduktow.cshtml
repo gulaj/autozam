@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Autozam.Models.Product>
+
+<ul id="products" class="list-1">
+
+@foreach (var item in Model.OrderBy(m=> m.Order).ThenBy(m => m.Name)) {
+    <li>@Html.ActionLink(item.Name,"Produkt", new {id = item.Id})</li>
+    
+}
+
+</ul>

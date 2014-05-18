@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Autozam.Models.Category>
+
+@{
+    ViewBag.Title = "Asortyment";
+}
+
+@*<h2>Asortyment</h2>*@
+<div id="categorylist">
+<ul>
+@foreach (var item in Model.OrderBy(m=> m.Order).ThenBy(m=> m.Name)) {
+    
+            <li id="@item.Name.Replace(' ','_')">
+                <a href="Kategoria/@item.Id"><div><img src="@Href("~/images/categories/"+item.Id+"/logo.jpg")" alt="@item.Name" /><br />@item.Name
+                </div></a></li>
+}
+           @* <li id="telewizja_przemyslowa">
+                <a href="http://localhost:13746/Products/TelewizjaPrzemyslowa"><div><img src="@Href("~/images/categories/27/logo.jpg")" alt="telewizja_przemyslowa" /><br />TV przemysłowa
+                </div></a></li>*@
+
+    </ul>
+<div class="clear-fix"></div>
+</div>

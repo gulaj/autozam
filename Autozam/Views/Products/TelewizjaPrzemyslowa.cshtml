@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Autozam.Models.Product>
+
+@{
+    ViewBag.Title = "Telewizja Przemysłowa";
+    }
+<h1 style="font-size:30px">Wykonujemy kompleksowo:</h1>
+<img src="~/Images/tv_przemyslowa.png" style="position:relative; top:-80px;" />
+@Html.Action("GetPhotos")
+
+   @section css {
+    
+       <link href="~/Content/jquery.simplyscroll.css" rel="stylesheet" />
+}
+@section scripts{
+    <script src="~/Scripts/jquery.simplyscroll.js"></script>
+    <script type="text/javascript">
+(function($) {
+	$(function() {
+		$("#scroller").simplyScroll();
+	});
+})(jQuery);
+</script>
+}

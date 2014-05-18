@@ -1,0 +1,28 @@
+@model Autozam.Models.Product
+
+@{
+    ViewBag.Title = "Edycja";
+}
+
+<h2>Edycja</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Product</legend>
+
+        @Html.HiddenFor(model => model.Id)
+		@Html.Partial("_CreateOrEdit", Model)
+
+        <p>
+            <input type="submit" value="Zapisz" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Powrót do listy", "Index")
+</div>
+@section scripts_header{
+    <script src="~/Scripts/tiny_mce/tiny_mce.js"></script>   
+}

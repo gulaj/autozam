@@ -1,0 +1,29 @@
+@model Autozam.Models.Category
+
+@{
+    ViewBag.Title = "Dodawanie kategorii";
+}
+
+<h2>Dodawanie kategorii</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Kategoria</legend>
+
+		@Html.Partial("_CreateOrEdit", Model)
+
+        <p>
+            <input type="submit" value="Dodaj" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Powrót do listy kategorii", "Index")
+</div>
+
+
+@section scripts_header{
+    <script src="~/Scripts/tiny_mce/tiny_mce.js"></script>   
+}

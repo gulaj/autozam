@@ -1,0 +1,63 @@
+@model Autozam.Models.Product
+
+@{
+    ViewBag.Title = "Dodawnie produktu";
+}
+
+<h2>Dodawnie produktu</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Produkt</legend>
+
+		@Html.Partial("_CreateOrEdit", Model)
+
+        <p>
+            <input type="submit" value="Utwórz" />
+        </p>
+    </fieldset>
+}
+@using (Html.BeginForm("AddImage", "Images", FormMethod.Post, new { enctype = "multipart/form-data", id = "ajaxUploadForm" }))
+{
+     <fieldset>
+
+          <legend>Upload a file</legend>
+
+           <label>File to Upload: <input type="file" name="file" />(100MB max size)</label>
+
+           <input id="ajaxUploadButton" type="submit" value="Submit" />
+
+           </fieldset>
+}
+
+<script type="text/javascript">
+
+    $(function () {
+        $("#ajaxUploadForm").ajaxForm({
+            iframe: true,
+            dataType: "json",
+            beforeSubmit: function () {
+                $("#ajaxUploadForm").block({ message: '<h1><img src="/Content/busy.gif" /> Uploading file...</h1>' });
+            },
+            success: function (result) {
+                $("#ajaxUploadForm").unblock();
+                $("#ajaxUploadForm").resetForm();
+                $.growlUI(null, result.message);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                $("#ajaxUploadForm").unblock();
+                $("#ajaxUploadForm").resetForm();
+                $.growlUI(null, 'Error uploading file');
+            }
+        });
+    });
+</script>
+
+<div>
+    @Html.ActionLink("Powrót do listy", "Index")
+</div>
+
+@section scripts_header{
+    <script src="~/Scripts/tiny_mce/tiny_mce.js"></script>   
+}
